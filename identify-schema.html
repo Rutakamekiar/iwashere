@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSON Schema Variant Detector with Unique Coordinates</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 2em;
+      }
+      pre {
+        background: #f4f4f4;
+        padding: 1em;
+        overflow: auto;
+        white-space: pre-wrap;
+      }
+      input {
+        margin-bottom: 1em;
+        display: block;
+      }
+      h2 {
+        margin-top: 1.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Detect JSON Schema Variants & Extract Unique Coordinates</h1>
+    <input type="file" id="fileInput" accept=".json" />
+
+    <h2>Variants</h2>
+    <pre id="variantsOutput"></pre>
+
+    <h2>Coordinates</h2>
+    <pre id="coordsOutput"></pre>
+
+    <script src="script.js"></script>
+    <script>
+      // Event listener
+      document.getElementById("fileInput").addEventListener("change", () => {
+        const file = document.getElementById("fileInput").files[0];
+        if (!file) return;
+        processFile(file);
+        const variants = getVariants(data);
+        const coordinates = getCoordinates(data);
+        
+        document.getElementById('variantsOutput').textContent = JSON.stringify(variants, null, 2);
+        document.getElementById('coordsOutput').textContent = JSON.stringify(coordinates, null, 2);
+      });
+    </script>
+  </body>
+</html>
